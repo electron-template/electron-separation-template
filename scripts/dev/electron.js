@@ -11,7 +11,7 @@ module.exports = ElectronManager;
 
 
 // 监听electron目录文件变化并自动重启electron
-function startWatcher (electronPath) {
+function startWatcher (electronPath, copy, restartElectron) {
   const changeHandle = async (path) => {
     console.log(Chalk.blueBright(`[electron] `) + `Change in ${path}. reloading... 🚀`);
 
@@ -68,7 +68,7 @@ async function ElectronManager (rootPath, rendererPort, stopHandler = () => {}) 
 
     try {
       await compileTs(electronPath);
-      electronWatcher = startWatcher(electronPath);
+      electronWatcher = startWatcher(electronPath, copy, restartElectron);
     } catch {
       console.log(Chalk.redBright('Could not start Electron because of the above typescript error(s).'));
       electronProcessLocker = false;
