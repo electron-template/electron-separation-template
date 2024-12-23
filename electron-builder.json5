@@ -3,7 +3,7 @@
   // 应用程序id
   "appId": "com.node.app",
   // 应用名称
-  "productName": "node-electron",
+  "productName": "node-separation-electron",
   // 设置为 true 可以把自己的代码合并并加密
   "asar": false,
   "directories": {
