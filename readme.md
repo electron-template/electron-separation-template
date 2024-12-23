@@ -3,10 +3,7 @@
 方便前后端分离开发,
 
 # 问题
-1.server端依赖未能打包进来,需要优化
-2.server端不方便调用electron的api
-
-准备将sever端嵌入electron中
+1.server端不方便调用electron的api
 
 # 启动项目
 
