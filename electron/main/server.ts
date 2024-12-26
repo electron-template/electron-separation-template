@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { fork, spawn, exec } from 'child_process';
+import { spawn } from 'child_process';
 import { EOL } from 'os';
 import Chalk from 'chalk';
 import { app } from 'electron';
@@ -9,7 +9,7 @@ function sendMessageToRenderer(mainWindow, msg) {
 }
 
 function createServerHandle(serverPath, mainWindow, ...args) {
-  const [command, arg = [],cwd] = args;
+  const [command, arg = [], cwd] = args;
   sendMessageToRenderer(mainWindow, `正在启动服务...,路径为${serverPath}`);
   const child = spawn(command, arg, {
     stdio: ['ignore', 'pipe', 'pipe'], // 忽略输入，将标准输出和标准错误重定向到管道
@@ -34,7 +34,7 @@ function createServerHandle(serverPath, mainWindow, ...args) {
   });
 
   // 监听子进程的标准错误
-  child.stderr.on('data', (data) => {
+  child.stderr?.on('data', (data) => {
     sendMessageToRenderer(mainWindow, data.toString());
     process.stderr.write(Chalk.blueBright(`[nest] `) + Chalk.white(data.toString()));
   });
@@ -55,13 +55,13 @@ function createServerHandle(serverPath, mainWindow, ...args) {
 }
 
 function createServer(mainWindow) {
-  let stopHandler = null;
+  let stopHandler;
   if (process.env.NODE_ENV !== 'development') {
     const serverPath = join(app.getAppPath(), '/server', 'main.js');
-    stopHandler=createServerHandle(serverPath, mainWindow, 'node ' + serverPath);
+    stopHandler = createServerHandle(serverPath, mainWindow, 'node ' + serverPath);
   } else {
     const serverPath = join(__dirname, '..', '..', '..', 'server');
-    stopHandler=createServerHandle(serverPath, mainWindow, 'npm', ['run', 'dev'], serverPath);
+    stopHandler = createServerHandle(serverPath, mainWindow, 'npm', ['run', 'dev'], serverPath);
   }
   return stopHandler;
 }

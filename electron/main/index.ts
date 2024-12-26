@@ -5,7 +5,7 @@ import createWindow from './mainWindow';
 import createRequest from './request';
 import createServer from './server';
 
-let stopServerHandler = null;
+let stopServerHandler;
 app.whenReady().then(async () => {
   createTray();
   createRequest();
@@ -32,13 +32,10 @@ if (process.platform === 'win32') app.setAppUserModelId(app.getName());
 // 当窗口全部关闭时,退出electron应用,关闭进程
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    stopServerHandler?.();
     app.quit();
-    process.exit();
+    // process.exit();
   }
 });
 app.on('before-quit', () => {
   stopServerHandler?.();
-  app.quit();
-  process.exit();
 });
