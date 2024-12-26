@@ -1,7 +1,7 @@
 // @see https://www.electron.build/configuration/configuration
 {
   // 应用程序id
-  "appId": "com.node.app",
+  "appId": "com.node.separation.app",
   // 应用名称
   "productName": "node-separation-electron",
   // 设置为 true 可以把自己的代码合并并加密
@@ -14,7 +14,7 @@
   },
   "nsis": {
     "perMachine": false,
-    "shortcutName": "Electron App",
+    "shortcutName": "separationElectronApp",
     // 是否一键安装，建议为 false，可以让用户点击下一步、下一步、下一步的形式安装程序，如果为true，当用户双击构建好的程序，自动安装程序并打开，即：一键安装（one-click installer）
     "oneClick": false,
     // 允许请求提升。 如果为false，则用户必须使用提升的权限重新启动安装程序。

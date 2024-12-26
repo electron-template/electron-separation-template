@@ -42,25 +42,28 @@ function createServerHandle(serverPath, mainWindow, ...args) {
   // 监听子进程的关闭事件
   child.on('close', (code) => {
     sendMessageToRenderer(mainWindow, '服务已关闭');
-    console.log(`child process exited with code ${code}`);
+    console.log(`child process close with code ${code}`);
     stop();
   });
   child.on('exit', (code) => {
-    sendMessageToRenderer(mainWindow, '服务已关闭');
+    sendMessageToRenderer(mainWindow, '服务已退出');
     console.log(`child process exited with code ${code}`);
     stop();
   });
+
+  return stop;
 }
 
 function createServer(mainWindow) {
+  let stopHandler = null;
   if (process.env.NODE_ENV !== 'development') {
     const serverPath = join(app.getAppPath(), '/server', 'main.js');
-    createServerHandle(serverPath, mainWindow, 'node ' + serverPath);
+    stopHandler=createServerHandle(serverPath, mainWindow, 'node ' + serverPath);
   } else {
     const serverPath = join(__dirname, '..', '..', '..', 'server');
-    createServerHandle(serverPath, mainWindow, 'npm', ['run', 'dev'], serverPath);
+    stopHandler=createServerHandle(serverPath, mainWindow, 'npm', ['run', 'dev'], serverPath);
   }
-
+  return stopHandler;
 }
 
 export default createServer;
