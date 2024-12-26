@@ -57,10 +57,6 @@ async function createWindow() {
 
     await windowDidFinishLoad()
 
-    // mainWindow.webContents.on('did-finish-load', () => {
-    //     process.stdout.write(Chalk.blueBright(`222222222222222222222222222222222222`))
-    // })
-
     // 当尝试打开新窗口时触发,
     app.on('second-instance', () => {
         if (mainWindow) {
@@ -69,19 +65,18 @@ async function createWindow() {
             mainWindow.focus()
         }
     })
-    //当应用激活时,打开/创建一个窗口
-    app.on('activate', () => {
-        const allWindows = BrowserWindow.getAllWindows()
-        if (allWindows.length) {
-            allWindows[0].focus()
-        } else {
-            createWindow()
-        }
-    })
-
     return mainWindow;
 }
 
+//当应用激活时,打开/创建一个窗口
+app.on('activate', () => {
+    const allWindows = BrowserWindow.getAllWindows()
+    if (allWindows.length) {
+        allWindows[0].focus()
+    } else {
+        createWindow()
+    }
+})
 // 保障只会启用一个窗口
 // app.requestSingleInstanceLock()获取当前是否只有一个应用实例
 if (!app.requestSingleInstanceLock()) {
