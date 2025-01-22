@@ -4,7 +4,7 @@
   "type": "commonjs",
   "main": "main/main/index.js",
   "scripts": {
-    "installAll": "install.sh",
+    "installAll": "installAll.sh",
     "dev": "node scripts/dev/index.js",
     "build": "node scripts/build/index.js && electron-builder",
     "build:win": "node scripts/build/index.js && electron-builder --win",

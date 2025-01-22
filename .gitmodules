@@ -1,6 +1,8 @@
 [submodule "renderer"]
 	path = renderer
-	url = https://gitee.com/electron-template/electron-separation-template-renderer.git
+	url = https://github.com/electron-template/electron-separation-template-renderer.git
+	branch = main
 [submodule "server"]
 	path = server
-	url = https://gitee.com/electron-template/electron-separation-template-server.git
+	url = https://github.com/electron-template/electron-separation-template-server.git
+	branch = main
