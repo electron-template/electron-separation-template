@@ -32,6 +32,7 @@ git submodule update --remote
 ```sh
 # 清除git缓存
 git rm --cached <子模块目录>
+rm -rf .git/modules/<子模块目录>
 # 删除对应子模块目录
 rm -rf <子模块目录>
 ```
