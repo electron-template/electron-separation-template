@@ -4,7 +4,7 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "author": "1983531544@qq.com",
+  "author": "wanglun",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/electron-template/electron-separation-template.git"
@@ -30,14 +30,17 @@
     "build:mac": "node scripts/build/index.js && electron-builder --mac",
     "build:linux": "node scripts/build/index.js && electron-builder --linux"
   },
-  "author": "wanglun",
   "license": "ISC",
   "description": "electron+nest+elementPlus",
   "devDependencies": {
+    "@commitlint/config-conventional": "^19.8.0",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.3",
+    "commitlint": "^19.8.0",
     "electron": "^27.1.0",
     "electron-builder": "^23.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.5"
   },
